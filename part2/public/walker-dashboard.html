@@ -11,6 +11,9 @@
   <div id="app" class="container py-4">
     <h1 class="mb-4 text-success">Walker Dashboard</h1>
 
+    <!-- ive added a logout button here -->
+    <button @click="logout" class="btn btn-outline-danger mb-4">Logout</button>
+
     <!-- Alert messages -->
     <div v-if="message" class="alert alert-info">{{ message }}</div>
     <div v-if="error" class="alert alert-danger">{{ error }}</div>
@@ -34,6 +37,8 @@
     </div>
     <p v-else>No available walk requests at the moment.</p>
   </div>
+
+
 
   <script>
     const { createApp, ref, onMounted } = Vue;
@@ -74,6 +79,18 @@
           }
         }
 
+      // ive added a logout function identical to owner-dashboard.html. 
+      async function logout() {
+        try {
+          // this sends a post request to the server to log the user out 
+          await fetch('/api/users/logout', { method: 'POST' }); //after logout, the user is taken to the home page 
+          window.location.href = 'index.html';
+        } catch (err) {
+          //if something goes wrong, log the error to the consol with this patronizing message lol 
+          console.error('Geez loise, the logout failed', err);
+        }
+      }
+
         onMounted(() => {
           loadWalkRequests();
         });
@@ -82,7 +99,8 @@
           walks,
           message,
           error,
-          applyToWalk
+          applyToWalk,
+          logout
         };
       }
     }).mount('#app');

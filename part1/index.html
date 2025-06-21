@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dog of the Day</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        img {
+            width: 300px;
+            transform: rotate(-10deg) skew(15deg, 10deg); 
+        }
+
+        button {
+            font-size: 5px;
+            padding: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <h1>Do you like it wonky? I know you do you dirty dog </h1>
+    <div id="app">
+        <img :src="dog" alt="" />
+        <br />
+        <button @click="getDog">Get New Dog</button>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return { dog: '' }
+            },
+            mounted() {
+                this.getDog()
+            },
+            methods: {
+                async getDog() {
+                    const res = await fetch('https://dog.ceo/api/breeds/image/random')
+                    const data = await res.json()
+                    this.dog = data.message
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
