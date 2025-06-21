@@ -1,0 +1,6 @@
+I really struggled early on with part 2 and a bit 
+of part 1 and i ended up completely jumbling and messing up the code to a point where i couldnt even track what i was doing
+I decided to take all the provided code of every file in the github repository 
+and replace it with what i had done so i could have a clean start without confusion this caused me to run out of time
+with the last couple of questions even tho i spent all day and night doing it. RIP. 
+I hope you like my doggo website  
